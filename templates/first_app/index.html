@@ -1,0 +1,40 @@
+{% extends 'first_app/base.html' %}
+{% block body_block %}
+<h3>List of Reciters</h3>
+<ul>
+    {% if reciter_list %}
+    {% for reciter in reciter_list %}
+    <li><a href="{% url 'first_app:album_list' artist_id=reciter.id %}">{{reciter.first_name}} {{reciter.last_name}}</a>
+    </li>
+    {% endfor %}
+    {% else %}
+    <h4>no Reciter in the list</h4>
+    {% endif %}
+</ul>
+
+<h3>List of Albums</h3>
+<ul>
+    {% if album_list %}
+
+    <table border="1px solid collapse">
+        <tr>
+            <th>Album Name</th>
+            <th>Rating</th>
+            <th>Release Date</th>
+        </tr>
+        {% for album in album_list %}
+        <tr>
+            <td>{{album.name}}</td>
+            <td>{{album.num_stars}}</td>
+            <td>{{album.release_date}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    {% else %}
+    <h4>no Reciter in the list</h4>
+    {% endif %}
+</ul>
+{% endblock %}

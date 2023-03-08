@@ -1,0 +1,31 @@
+{% extends 'first_app/base.html' %}
+{% block body_block %}
+<h3 class='text-decoration-underline'>Albums</h3>
+<h5>{{artist_info.first_name}} {{artist_info.last_name }} </h5>
+<p>Country: {{artist_info.country}} </p>
+<a href="{% url 'first_app:edit_artist' artist_id=artist_info.id %}" class="btn btn-success">Edit</a>
+<br>
+<br>
+<table class="table table-bordered text-center">
+    <tr>
+        <th>Album Name</th>
+        <th>Release Date</th>
+        <th>Rating</th>
+    </tr>
+    {% if album_list %}
+    {% for album in album_list %}
+    <tr>
+        <td class="text-start"><a href="{% url 'first_app:edit_album' album_id=album.id %}">{{album.name}}</a></td>
+        <td>{{album.release_date}}</td>
+        <td>{{album.num_stars}}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+<br>
+
+<a href="{% url 'first_app:delete_artist' artist_id=artist_info.id %}" onclick="return confirm('Delete Reciter')"
+    class="btn btn-danger">Delete</a>
+
+{% endblock %}
